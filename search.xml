@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello Java</title>
+    <url>/2015/07/12/20150712-hello-java/</url>
+    <content><![CDATA[<h4 id="Hello-Java"><a href="#Hello-Java" class="headerlink" title="Hello Java!"></a>Hello Java!</h4><hr>
+<p>我的第一个Java程序。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>HelloWorld</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2015/01/01/20150101-hello-world/</url>
+    <content><![CDATA[<p>Hello World! </p>
+]]></content>
+      <categories>
+        <category>HelloWorld</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>label标签使用</title>
+    <url>/2017/03/09/20170309-label/</url>
+    <content><![CDATA[<h4 id="页面上使用label标签时要注意："><a href="#页面上使用label标签时要注意：" class="headerlink" title="页面上使用label标签时要注意："></a>页面上使用label标签时要注意：</h4><blockquote>
+<ul>
+<li>input能被label标签包含</li>
+<li>label的for属性值为input等控件的id</li>
+<li>对齐时使用text-align:right/left即可</li>
+</ul>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Html</category>
+      </categories>
+      <tags>
+        <tag>Html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript isNaN()函数</title>
+    <url>/2017/03/29/20170329-javascript-isnan-function/</url>
+    <content><![CDATA[<p>isNaN()函数用于检查其参数是否是非数字值。</p>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p>isNaN(x)</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">x</td>
+<td align="left">必需。要检测的值。</td>
+</tr>
+</tbody></table>
+<h4 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h4><p>如果 x 是特殊的非数字值 NaN（或者能被转换为这样的值），返回的值就是 true。</p>
+<p>如果 x 是其他值,则返回 false。</p>
+<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>isNaN() 函数可用于判断其参数是否是 NaN，该值表示一个非法的数字（比如被 0 除后得到的结果）。</p>
+<p>如果把 NaN 与任何值（包括其自身）相比得到的结果均是 false，所以要判断某个值是否是 NaN，不能使用 == 或 === 运算符。正因为如此，isNaN() 函数是必需的。</p>
+<h4 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h4><p>isNaN() 函数通常用于检测 parseFloat() 和 parseInt() 的结果，以判断它们表示的是否是合法的数字。当然也可以用 isNaN() 函数来检测算数错误，比如用 0 作除数的情况。</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><h5 id="检查数字是否非法"><a href="#检查数字是否非法" class="headerlink" title="检查数字是否非法"></a>检查数字是否非法</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="number">123</span>));</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="number">-1.23</span>));</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="number">5</span><span class="number">-2</span>));</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="number">0</span>));</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="string">&quot;Hello&quot;</span>));</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="string">&quot;2005/12/12&quot;</span>));</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>你的时区</title>
+    <url>/2017/05/01/20170501-your-time-zone/</url>
+    <content><![CDATA[<p><img src="/images/2017-05-01/2017-05-01-001.jpg"></p>
+<blockquote>
+<p>纽约时间比加州时间早三个小时，<br>New York is 3 hours ahead of California,</p>
+</blockquote>
+<blockquote>
+<p>但加州时间并没有变慢。<br>but it does not make California slow.</p>
+</blockquote>
+<blockquote>
+<p>有人22岁就毕业了，<br>Someone graduated at the age o f 22,</p>
+</blockquote>
+<blockquote>
+<p>但等了五年才找到稳定的工作！<br>but waited 5 years before securing a good job!</p>
+</blockquote>
+<blockquote>
+<p>有人25岁就当上CEO，<br>Someone became a CEO at 25,</p>
+</blockquote>
+<blockquote>
+<p>却在50岁去世。<br>and died at 50.</p>
+</blockquote>
+<blockquote>
+<p>也有人迟到50岁才当上CEO，<br>While another became a CEO at 50,</p>
+</blockquote>
+<blockquote>
+<p>然后活到90岁。<br>and lived to 90 years.</p>
+</blockquote>
+<blockquote>
+<p>有人单身，<br>Someone is still single,</p>
+</blockquote>
+<blockquote>
+<p>同时也有人已婚。<br>while someone else got married.</p>
+</blockquote>
+<blockquote>
+<p>奥巴马55岁就退休，<br>Obama retires at 55,</p>
+</blockquote>
+<blockquote>
+<p>川普70岁才开始当总统。<br>but Trump starts at 70.</p>
+</blockquote>
+<blockquote>
+<p>世上每个人本来就有自己的发展时区。<br>Absolutely everyone in this world works based on their Time Zone.</p>
+</blockquote>
+<blockquote>
+<p>身边有些人看似走在你前面，<br>People around you might seem to go ahead of you,</p>
+</blockquote>
+<blockquote>
+<p>也有人看似走在你后面。<br>some might seem to be behind you.</p>
+</blockquote>
+<blockquote>
+<p>但其实每个人在自己的时区有自己的步程。<br>But everyone is running their own RACE, in their own TIME.</p>
+</blockquote>
+<blockquote>
+<p>不用嫉妒或嘲笑他们。<br>Don’t envy them or mock them.</p>
+</blockquote>
+<blockquote>
+<p>他们都在自己的时区里，你也是！<br>They are in their TIME ZONE, and you are in yours!</p>
+</blockquote>
+<blockquote>
+<p>生命就是等待正确的行动时机。<br>Life is about waiting for the right moment to act.</p>
+</blockquote>
+<blockquote>
+<p>所以，放轻松。<br>So, RELAX.</p>
+</blockquote>
+<blockquote>
+<p>你没有落后。<br>You’re not LATE.</p>
+</blockquote>
+<blockquote>
+<p>你没有领先。<br>You’re not EARLY.</p>
+</blockquote>
+<blockquote>
+<p>在你自己的时区里，一切安排都准时。<br>You are very much ON TIME, and in your TIME ZONE.</p>
+</blockquote>
+<p><img src="/images/2017-05-01/2017-05-01-002.jpg"></p>
+<p><strong>注：图片和文字均来源于网络，版权属于原作者或网站。如有版权疑问，请与相关内容原作者或来源网站联系。</strong></p>
+]]></content>
+      <categories>
+        <category>Others</category>
+      </categories>
+      <tags>
+        <tag>Others</tag>
+      </tags>
+  </entry>
+</search>
