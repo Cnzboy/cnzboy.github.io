@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello Java</title>
-    <url>/2015/07/12/20150712-hello-java/</url>
-    <content><![CDATA[<h4 id="Hello-Java"><a href="#Hello-Java" class="headerlink" title="Hello Java!"></a>Hello Java!</h4><hr>
-<p>我的第一个Java程序。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2015/01/01/20150101-hello-world/</url>
     <content><![CDATA[<p>Hello World! </p>
@@ -23,26 +10,6 @@
       </categories>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>label标签使用</title>
-    <url>/2017/03/09/20170309-label/</url>
-    <content><![CDATA[<h4 id="页面上使用label标签时要注意："><a href="#页面上使用label标签时要注意：" class="headerlink" title="页面上使用label标签时要注意："></a>页面上使用label标签时要注意：</h4><a id="more"></a>
-
-<blockquote>
-<ul>
-<li>input能被label标签包含</li>
-<li>label的for属性值为input等控件的id</li>
-<li>对齐时使用text-align:right/left即可</li>
-</ul>
-</blockquote>
-]]></content>
-      <categories>
-        <category>HTML</category>
-      </categories>
-      <tags>
-        <tag>HTML</tag>
       </tags>
   </entry>
   <entry>
@@ -86,18 +53,37 @@
       </tags>
   </entry>
   <entry>
-    <title>页面到达最小宽度后固定</title>
-    <url>/2017/04/07/20170407-csss/</url>
-    <content><![CDATA[<p>让页面到达最小宽度后固定不再改变，代码如下：</p>
+    <title>label标签使用</title>
+    <url>/2017/03/09/20170309-label/</url>
+    <content><![CDATA[<p>页面上使用label标签时要注意：</p>
 <a id="more"></a>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">5%</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">5%</span>;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">1000px</span>; </span><br><span class="line">    <span class="attribute">width</span>: <span class="built_in">expression</span>(document.body.clientWidth &lt; <span class="number">1000</span>? <span class="string">&quot;1000px&quot;</span>: <span class="string">&quot;auto&quot;</span> ); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<ul>
+<li>input能被label标签包含</li>
+<li>label的for属性值为input等控件的id</li>
+<li>对齐时使用text-align:right/left即可</li>
+</ul>
+</blockquote>
 ]]></content>
       <categories>
-        <category>CSS</category>
+        <category>HTML</category>
       </categories>
       <tags>
-        <tag>CSS</tag>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello Java</title>
+    <url>/2015/07/12/20150712-hello-java/</url>
+    <content><![CDATA[<h4 id="Hello-Java"><a href="#Hello-Java" class="headerlink" title="Hello Java!"></a>Hello Java!</h4><hr>
+<p>我的第一个Java程序。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -131,6 +117,21 @@
       </categories>
       <tags>
         <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>页面到达最小宽度后固定</title>
+    <url>/2017/04/07/20170407-csss/</url>
+    <content><![CDATA[<p>让页面到达最小宽度后固定不再改变，代码如下：</p>
+<a id="more"></a>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">5%</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">5%</span>;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">1000px</span>; </span><br><span class="line">    <span class="attribute">width</span>: <span class="built_in">expression</span>(document.body.clientWidth &lt; <span class="number">1000</span>? <span class="string">&quot;1000px&quot;</span>: <span class="string">&quot;auto&quot;</span> ); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
