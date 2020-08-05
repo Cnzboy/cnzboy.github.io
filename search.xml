@@ -7,7 +7,7 @@
 <p>我的第一个Java程序。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>HelloWorld</category>
+        <category>Java</category>
       </categories>
       <tags>
         <tag>Java</tag>
@@ -19,7 +19,7 @@
     <content><![CDATA[<p>Hello World! </p>
 ]]></content>
       <categories>
-        <category>HelloWorld</category>
+        <category>Java</category>
       </categories>
       <tags>
         <tag>Java</tag>
@@ -28,7 +28,9 @@
   <entry>
     <title>label标签使用</title>
     <url>/2017/03/09/20170309-label/</url>
-    <content><![CDATA[<h4 id="页面上使用label标签时要注意："><a href="#页面上使用label标签时要注意：" class="headerlink" title="页面上使用label标签时要注意："></a>页面上使用label标签时要注意：</h4><blockquote>
+    <content><![CDATA[<h4 id="页面上使用label标签时要注意："><a href="#页面上使用label标签时要注意：" class="headerlink" title="页面上使用label标签时要注意："></a>页面上使用label标签时要注意：</h4><a id="more"></a>
+
+<blockquote>
 <ul>
 <li>input能被label标签包含</li>
 <li>label的for属性值为input等控件的id</li>
@@ -37,16 +39,17 @@
 </blockquote>
 ]]></content>
       <categories>
-        <category>Html</category>
+        <category>HTML</category>
       </categories>
       <tags>
-        <tag>Html</tag>
+        <tag>HTML</tag>
       </tags>
   </entry>
   <entry>
     <title>Eclipse报错One or more constraints have not been satisfied解决方法</title>
     <url>/2017/03/17/20170317-eclipse/</url>
     <content><![CDATA[<p>解决maven项目导入eclipse中后，代码不报错，但是项目整体报错为：One or more constraints have not been satisfied.</p>
+<a id="more"></a>
 <ol>
 <li><p>在pom.xml中添加下面内容即可，同时也可以解决Maven-&gt;update project默认jdk的问题</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>jdk-1.x<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">jdk</span>&gt;</span>1.x<span class="tag">&lt;/<span class="name">jdk</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.x<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.x<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">maven.compiler.compilerVersion</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.compilerVersion</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -83,9 +86,25 @@
       </tags>
   </entry>
   <entry>
+    <title>页面到达最小宽度后固定</title>
+    <url>/2017/04/07/20170407-csss/</url>
+    <content><![CDATA[<p>让页面到达最小宽度后固定不再改变，代码如下：</p>
+<a id="more"></a>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">5%</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">5%</span>;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">1000px</span>; </span><br><span class="line">    <span class="attribute">width</span>: <span class="built_in">expression</span>(document.body.clientWidth &lt; <span class="number">1000</span>? <span class="string">&quot;1000px&quot;</span>: <span class="string">&quot;auto&quot;</span> ); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaScript isNaN()函数</title>
     <url>/2017/03/29/20170329-javascript-isnan-function/</url>
     <content><![CDATA[<p>isNaN()函数用于检查其参数是否是非数字值。</p>
+<a id="more"></a>
 <h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p>isNaN(x)</p>
 <table>
 <thead>
@@ -115,31 +134,18 @@
       </tags>
   </entry>
   <entry>
-    <title>页面到达最小宽度后固定</title>
-    <url>/2017/04/07/20170407-csss/</url>
-    <content><![CDATA[<p>让页面到达最小宽度后固定不再改变，代码如下：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">5%</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">5%</span>;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">1000px</span>; </span><br><span class="line">    <span class="attribute">width</span>: <span class="built_in">expression</span>(document.body.clientWidth &lt; <span class="number">1000</span>? <span class="string">&quot;1000px&quot;</span>: <span class="string">&quot;auto&quot;</span> ); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Css</category>
-      </categories>
-      <tags>
-        <tag>Css</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>表格的宽度随着文字的长度变宽</title>
     <url>/2017/04/10/20170410-css/</url>
     <content><![CDATA[<p>表格宽度随着文字的变化，不折行显示，代码如下：</p>
+<a id="more"></a>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">td</span> &#123; </span><br><span class="line">    <span class="attribute">white-space</span>: nowrap;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
-        <category>Css</category>
+        <category>CSS</category>
       </categories>
       <tags>
-        <tag>Css</tag>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
