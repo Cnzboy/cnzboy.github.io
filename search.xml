@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2015/01/01/20150101-hello-world/</url>
-    <content><![CDATA[<p>Hello World! </p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello Java</title>
-    <url>/2015/07/12/20150712-hello-java/</url>
+    <url>/2015/07/12/2015-07-12-Hello%20Java/</url>
     <content><![CDATA[<h4 id="Hello-Java"><a href="#Hello-Java" class="headerlink" title="Hello Java!"></a>Hello Java!</h4><hr>
 <p>我的第一个Java程序。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
@@ -26,82 +14,26 @@
       </tags>
   </entry>
   <entry>
-    <title>Windows环境下如何将免安装版Tomcat注册成系统服务</title>
-    <url>/2017/05/31/2017-05-31-tomcat-service/</url>
-    <content><![CDATA[<p>实际工作中会遇到电脑上安装多个Tomcat，当我们选用免安装的zip包来安装时，为了操作方便，会将Tomcat注册为系统服务，那应该如何操作呢？</p>
-<a id="more"></a>
-
-<p>注册服务：</p>
-<blockquote>
-<p>在DOS命令行模式下，cd到tomcat的bin目录下。</p>
-</blockquote>
-<blockquote>
-<p>在tomcat的bin目录下可以看到有一个service.bat的批处理文件，这个文件就是为我们将tomcat注册成系统服务所用。有兴趣的可以打开看看批处理文件里面的内容。</p>
-</blockquote>
-<blockquote>
-<p>执行命令：</p>
-<p><code>service.bat install 服务名</code>  </p>
-<p>后面的服务名可以随便取，别跟系统已有的服务名冲突就行。如果成功可以看到以下提示信息：</p>
-<p><code>The Service &#39;服务名&#39; has been installed</code></p>
-</blockquote>
-<p>卸载服务：</p>
-<blockquote>
-<p>前两步骤和上面一致。执行命令：</p>
-<p><code>service.bat uninstall 服务名</code></p>
-<p>移除成功的提示信息：</p>
-<p><code>The Service ‘服务名&#39; has been removed</code></p>
-</blockquote>
+    <title>Hello World</title>
+    <url>/2015/01/01/2015-01-01-Hello%20World/</url>
+    <content><![CDATA[<p>Hello World! </p>
 ]]></content>
       <categories>
-        <category>Tomcat</category>
+        <category>Java</category>
       </categories>
       <tags>
-        <tag>Tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JavaScript Blob对象类型介绍和使用</title>
-    <url>/2017/05/25/2017-05-25-blob/</url>
-    <content><![CDATA[<p>Blob 是什么？ 这里说的是一种JavaScript的对象类型。Oracle 中也有类似的栏位类型。</p>
-<a id="more"></a>
-
-<p>使用旧方法创建 Blob 对象。</p>
-<p>旧的方法使用 BlobBuilder 来创建一个Blob 实例，并且使用一个 append() 方法，将字符串（或者 ArrayBuffer 或者 Blob，此处用 string 举例）插入，一旦数据插入成功，就可以使用 getBlob() 方法设置一个 mime 。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> builder = <span class="keyword">new</span> BolbBuilder();</span></span><br><span class="line"><span class="javascript">    builder.append(<span class="string">&quot;Hello World!&quot;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> blob = builder.getBlob(<span class="string">&quot;text/plain&quot;</span>);  </span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>新方法创建Blob 对象</p>
-<p>在新的方法中直接可以通过 Blob() 的构造函数来创建了。</p>
-<p>构造函数，接受两个参数，第一个为一个数据序列，可以是任意格式的值，例如，任意数量的字符串，Blobs 以及 ArrayBuffers。第二个参数，是一个包含了两个属性的对象，其两个属性分别是：</p>
-<p>type – MIME 的类型。</p>
-<p>endings – 决定 append() 的数据格式，（数据中的 \n 如何被转换）可以取值为 “transparent” 或者 “native”（t* 的话不变，n* 的话按操作系统转换；t* 为默认） </p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([<span class="string">&quot;Hello World!&quot;</span>],&#123;<span class="attr">type</span>:<span class="string">&quot;text/plain&quot;</span>&#125;);  </span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>Blob的应用</p>
-<p>大文件分割（slice() 方法）</p>
-<p>slice() 方法接受三个参数，起始偏移量，结束偏移量，还有可选的 mime 类型。如果 mime 类型，没有设置，那么新的 Blob 对象的 mime 类型和父级一样。</p>
-<p>当要上传大文件的时候，此方法非常有用，可以将大文件分割分段，然后各自上传，因为分割之后的 Blob 对象和原始的是独立存在的。</p>
-<p>不过目前浏览器实现此方法还没有统一，火狐使用的是 mozSlice() ，Chrome 使用的是 webkitSlice() ，其他浏览器则正常的方式 slice() </p>
-<p>可以写一个兼容各浏览器的方法：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sliceBlob</span>(<span class="params">blob, start, end, type</span>) </span>&#123;</span><br><span class="line">    type = type || blob.type;</span><br><span class="line">    <span class="keyword">if</span> (blob.mozSlice) &#123;</span><br><span class="line">        <span class="keyword">return</span> blob.mozSlice(start, end, type);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (blob.webkitSlice) &#123;</span><br><span class="line">        <span class="keyword">return</span> blob.webkitSlice(start, end type);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;This doesn&#x27;t work!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在Chrome 中指定下载的文件名。</p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
     <title>First</title>
-    <url>/2017/03/03/20170303-none/</url>
+    <url>/2017/03/03/2017-03-03-First/</url>
     <content><![CDATA[<a id="more"></a>
 <!--记录一下。-->]]></content>
   </entry>
   <entry>
     <title>label标签使用</title>
-    <url>/2017/03/09/20170309-label/</url>
+    <url>/2017/03/09/2017-03-09-label%E6%A0%87%E7%AD%BE%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p>页面上使用label标签时要注意：</p>
 <a id="more"></a>
 
@@ -121,8 +53,56 @@
       </tags>
   </entry>
   <entry>
+    <title>JavaScript isNaN()函数</title>
+    <url>/2017/03/29/2017-03-29-JavaScript%20isNaN()%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<p>isNaN()函数用于检查其参数是否是非数字值。</p>
+<a id="more"></a>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p>isNaN(x)</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">x</td>
+<td align="left">必需。要检测的值。</td>
+</tr>
+</tbody></table>
+<h4 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h4><p>如果 x 是特殊的非数字值 NaN（或者能被转换为这样的值），返回的值就是 true。</p>
+<p>如果 x 是其他值,则返回 false。</p>
+<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>isNaN() 函数可用于判断其参数是否是 NaN，该值表示一个非法的数字（比如被 0 除后得到的结果）。</p>
+<p>如果把 NaN 与任何值（包括其自身）相比得到的结果均是 false，所以要判断某个值是否是 NaN，不能使用 == 或 === 运算符。正因为如此，isNaN() 函数是必需的。</p>
+<h4 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h4><p>isNaN() 函数通常用于检测 parseFloat() 和 parseInt() 的结果，以判断它们表示的是否是合法的数字。当然也可以用 isNaN() 函数来检测算数错误，比如用 0 作除数的情况。</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><h5 id="检查数字是否非法"><a href="#检查数字是否非法" class="headerlink" title="检查数字是否非法"></a>检查数字是否非法</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="number">123</span>));</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="number">-1.23</span>));</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="number">5</span><span class="number">-2</span>));</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="number">0</span>));</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="string">&quot;Hello&quot;</span>));</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="string">&quot;2005/12/12&quot;</span>));</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>页面到达最小宽度后固定</title>
+    <url>/2017/04/07/2017-04-07-%E9%A1%B5%E9%9D%A2%E5%88%B0%E8%BE%BE%E6%9C%80%E5%B0%8F%E5%AE%BD%E5%BA%A6%E5%90%8E%E5%9B%BA%E5%AE%9A/</url>
+    <content><![CDATA[<p>让页面到达最小宽度后固定不再改变，代码如下：</p>
+<a id="more"></a>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">5%</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">5%</span>;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">1000px</span>; </span><br><span class="line">    <span class="attribute">width</span>: <span class="built_in">expression</span>(document.body.clientWidth &lt; <span class="number">1000</span>? <span class="string">&quot;1000px&quot;</span>: <span class="string">&quot;auto&quot;</span> ); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Eclipse报错One or more constraints have not been satisfied解决方法</title>
-    <url>/2017/03/17/20170317-eclipse/</url>
+    <url>/2017/03/17/2017-03-17-Eclipse%E6%8A%A5%E9%94%99One%20or%20more%20constraints%20have%20not%20been%20satisfied%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>解决maven项目导入eclipse中后，代码不报错，但是项目整体报错为：One or more constraints have not been satisfied.</p>
 <a id="more"></a>
 <ol>
@@ -161,56 +141,8 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript isNaN()函数</title>
-    <url>/2017/03/29/20170329-javascript-isnan-function/</url>
-    <content><![CDATA[<p>isNaN()函数用于检查其参数是否是非数字值。</p>
-<a id="more"></a>
-<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p>isNaN(x)</p>
-<table>
-<thead>
-<tr>
-<th align="left">参数</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">x</td>
-<td align="left">必需。要检测的值。</td>
-</tr>
-</tbody></table>
-<h4 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h4><p>如果 x 是特殊的非数字值 NaN（或者能被转换为这样的值），返回的值就是 true。</p>
-<p>如果 x 是其他值,则返回 false。</p>
-<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>isNaN() 函数可用于判断其参数是否是 NaN，该值表示一个非法的数字（比如被 0 除后得到的结果）。</p>
-<p>如果把 NaN 与任何值（包括其自身）相比得到的结果均是 false，所以要判断某个值是否是 NaN，不能使用 == 或 === 运算符。正因为如此，isNaN() 函数是必需的。</p>
-<h4 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h4><p>isNaN() 函数通常用于检测 parseFloat() 和 parseInt() 的结果，以判断它们表示的是否是合法的数字。当然也可以用 isNaN() 函数来检测算数错误，比如用 0 作除数的情况。</p>
-<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><h5 id="检查数字是否非法"><a href="#检查数字是否非法" class="headerlink" title="检查数字是否非法"></a>检查数字是否非法</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="number">123</span>));</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="number">-1.23</span>));</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="number">5</span><span class="number">-2</span>));</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="number">0</span>));</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="string">&quot;Hello&quot;</span>));</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">isNaN</span>(<span class="string">&quot;2005/12/12&quot;</span>));</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<h5 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>页面到达最小宽度后固定</title>
-    <url>/2017/04/07/20170407-csss/</url>
-    <content><![CDATA[<p>让页面到达最小宽度后固定不再改变，代码如下：</p>
-<a id="more"></a>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">5%</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">5%</span>;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">1000px</span>; </span><br><span class="line">    <span class="attribute">width</span>: <span class="built_in">expression</span>(document.body.clientWidth &lt; <span class="number">1000</span>? <span class="string">&quot;1000px&quot;</span>: <span class="string">&quot;auto&quot;</span> ); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>CSS</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>表格的宽度随着文字的长度变宽</title>
-    <url>/2017/04/10/20170410-css/</url>
+    <url>/2017/04/10/2017-04-10-%E8%A1%A8%E6%A0%BC%E7%9A%84%E5%AE%BD%E5%BA%A6%E9%9A%8F%E7%9D%80%E6%96%87%E5%AD%97%E7%9A%84%E9%95%BF%E5%BA%A6%E5%8F%98%E5%AE%BD/</url>
     <content><![CDATA[<p>表格宽度随着文字的变化，不折行显示，代码如下：</p>
 <a id="more"></a>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">td</span> &#123; </span><br><span class="line">    <span class="attribute">white-space</span>: nowrap;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -225,7 +157,7 @@
   </entry>
   <entry>
     <title>JavaScript JSON.parse()和JSON.stringify()用法和区别</title>
-    <url>/2017/04/12/20170412-json-parse&amp;stringify/</url>
+    <url>/2017/04/12/2017-04-12-JavaScript%20JSON.parse()%E5%92%8CJSON.stringify()%E7%94%A8%E6%B3%95%E5%92%8C%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<p>JSON.parse()用于从一个字符串中解析出json对象，如：</p>
 <a id="more"></a>
 
@@ -249,7 +181,7 @@
   </entry>
   <entry>
     <title>Eclipse打开后提示Subversion Native Library Not Available解决办法</title>
-    <url>/2017/04/14/20170414-eclipse/</url>
+    <url>/2017/04/14/2017-04-14-Eclipse%E6%89%93%E5%BC%80%E5%90%8E%E6%8F%90%E7%A4%BASubversion%20Native%20Library%20Not%20Available%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
     <content><![CDATA[<p>打开Eclipse后，弹出来如下：</p>
 <p><img src="/images/2017-04/2017-04-14-001.png"></p>
 <p>解决方案：</p>
@@ -265,7 +197,7 @@
   </entry>
   <entry>
     <title>Java String类的format()方式介绍和使用</title>
-    <url>/2017/04/17/20170417-string-format/</url>
+    <url>/2017/04/17/2017-04-17-Java%20String%E7%B1%BB%E7%9A%84format()%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p>String类的format()方法用于创建格式化的字符串以及连接多个字符串对象。熟悉C语言的同学应该还记得C语言的sprintf()方法，两者有类似之处。</p>
 <a id="more"></a>
 
@@ -319,7 +251,7 @@
   </entry>
   <entry>
     <title>利用Spring MVC拦截器和自定义注解实现简易的认证</title>
-    <url>/2017/04/21/20170421-simple-auth-verify/</url>
+    <url>/2017/04/21/2017-04-21-%E5%88%A9%E7%94%A8Spring%20MVC%E6%8B%A6%E6%88%AA%E5%99%A8%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E7%9A%84%E8%AE%A4%E8%AF%81/</url>
     <content><![CDATA[<p>利用Spring MVC提供的HandlerInterceptor拦截器，实现一个简易的身份权限认证。</p>
 <a id="more"></a>
 <p>HandlerInterceptor是Spring MVC提供的拦截器接口，大致源码如下：</p>
@@ -361,7 +293,7 @@
   </entry>
   <entry>
     <title>请求参数乱码或是返回结果乱码问题解决</title>
-    <url>/2017/04/25/20170425-chinese/</url>
+    <url>/2017/04/25/2017-04-25-%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E4%B9%B1%E7%A0%81%E6%88%96%E6%98%AF%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</url>
     <content><![CDATA[<ol>
 <li><p>JSP页面出现乱码时，检查在页面最上面是否含有如下：</p>
 <figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%<span class="meta">@page</span> pageEncoding=<span class="string">&quot;UTF-8&quot;</span> contentType=<span class="string">&quot;text/html; charset=UTF-8&quot;</span> %&gt;  </span><br></pre></td></tr></table></figure>
@@ -389,12 +321,11 @@
       </categories>
       <tags>
         <tag>Spring MVC</tag>
-        <tag>参数乱码</tag>
       </tags>
   </entry>
   <entry>
     <title>你的时区</title>
-    <url>/2017/05/01/20170501-your-time-zone/</url>
+    <url>/2017/05/01/2017-05-01-%E4%BD%A0%E7%9A%84%E6%97%B6%E5%8C%BA/</url>
     <content><![CDATA[<p><img src="/images/2017-05/2017-05-01-001.jpg"></p>
 <blockquote>
 <p>纽约时间比加州时间早三个小时，<br>New York is 3 hours ahead of California,</p>
@@ -477,7 +408,7 @@
   </entry>
   <entry>
     <title>SQLServer分页查询</title>
-    <url>/2017/05/08/20170508-sqlserver-page/</url>
+    <url>/2017/05/08/2017-05-08-SQLServer%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/</url>
     <content><![CDATA[<p>在SQLServer 2005之前一直借助<code>top</code>关键字来实现分页查询，不过效率低，在SQLServer 2005及其之后的版本都使用<code>row_number()</code>解析函数来完成分页查询，效率有了很大的提高，不过sql语句比较复杂，下面给出分页查询的通式：</p>
 <a id="more"></a>
 
@@ -494,7 +425,7 @@
   </entry>
   <entry>
     <title>SQL 视图</title>
-    <url>/2017/05/09/20170509-sqlserver-view/</url>
+    <url>/2017/05/09/2017-05-09-SQL%20%E8%A7%86%E5%9B%BE/</url>
     <content><![CDATA[<ol>
 <li><p>SQL CREATE VIEW 语句</p>
 <p>什么是视图？</p>
@@ -550,7 +481,7 @@
   </entry>
   <entry>
     <title>JavaScript location.href 与 location.search比较</title>
-    <url>/2017/05/15/20170515-href&amp;search/</url>
+    <url>/2017/05/15/2017-05-15-JavaScript%20location.href%20%E4%B8%8E%20location.search%E6%AF%94%E8%BE%83/</url>
     <content><![CDATA[<p><code>document.location.href</code> 返回完整的 URL。 </p>
 <p>如：<code>http://www.cftea.com/foo.asp?p=1</code></p>
 <p><code>document.location.search</code>是从当前URL的?号开始的字符串</p>
@@ -571,8 +502,20 @@
       </tags>
   </entry>
   <entry>
+    <title>常用的一些正则表达式</title>
+    <url>/2017/05/22/2017-05-22-%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">^[1-9]d*$　 　 &#x2F;&#x2F;匹配正整数</span><br><span class="line">^-[1-9]d*$ 　 &#x2F;&#x2F;匹配负整数</span><br><span class="line">^-?[1-9]d*$　　 &#x2F;&#x2F;匹配整数</span><br><span class="line">^[1-9]d*|0$　 &#x2F;&#x2F;匹配非负整数（正整数 + 0）</span><br><span class="line">^-[1-9]d*|0$　　 &#x2F;&#x2F;匹配非正整数（负整数 + 0）</span><br><span class="line">^[1-9]d*.d*|0.d*[1-9]d*$　　 &#x2F;&#x2F;匹配正浮点数</span><br><span class="line">^-([1-9]d*.d*|0.d*[1-9]d*)$　 &#x2F;&#x2F;匹配负浮点数</span><br><span class="line">^-?([1-9]d*.d*|0.d*[1-9]d*|0?.0+|0)$　 &#x2F;&#x2F;匹配浮点数</span><br><span class="line">^[1-9]d*.d*|0.d*[1-9]d*|0?.0+|0$　　 &#x2F;&#x2F;匹配非负浮点数（正浮点数 + 0）</span><br><span class="line">^(-([1-9]d*.d*|0.d*[1-9]d*))|0?.0+|0$　　&#x2F;&#x2F;匹配非正浮点数（负浮点数 + 0）</span><br><span class="line">验证数字：^[0-9]*$</span><br><span class="line">验证n位的数字：^\d&#123;n&#125;$</span><br><span class="line">验证至少n位数字：^\d&#123;n,&#125;$</span><br><span class="line">验证m-n位的数字：^\d&#123;m,n&#125;$</span><br><span class="line">验证零和非零开头的数字：^(0|[1-9][0-9]*)$</span><br><span class="line">验证有两位小数的正实数：^[0-9]+(.[0-9]&#123;2&#125;)?$</span><br><span class="line">验证有1-3位小数的正实数：^[0-9]+(.[0-9]&#123;1,3&#125;)?$</span><br><span class="line">验证非零的正整数：^\+?[1-9][0-9]*$</span><br><span class="line">验证非零的负整数：^\-[1-9][0-9]*$</span><br><span class="line">验证非负整数（正整数 + 0） ^\d+$</span><br><span class="line">验证非正整数（负整数 + 0） ^((-\d+)|(0+))$</span><br><span class="line">验证长度为3的字符：^.&#123;3&#125;$</span><br><span class="line">验证由26个英文字母组成的字符串：^[A-Za-z]+$</span><br><span class="line">验证由26个大写英文字母组成的字符串：^[A-Z]+$</span><br><span class="line">验证由26个小写英文字母组成的字符串：^[a-z]+$</span><br><span class="line">验证由数字和26个英文字母组成的字符串：^[A-Za-z0-9]+$</span><br><span class="line">验证由数字、26个英文字母或者下划线组成的字符串：^\w+$</span><br><span class="line">验证用户密码:^[a-zA-Z]\w&#123;5,17&#125;$ 正确格式为：以字母开头，长度在6-18之间，只能包含字符、数字和下划线。</span><br><span class="line">验证是否含有 ^%&amp;&#39;,;&#x3D;?$\&quot; 等字符：[^%&amp;&#39;,;&#x3D;?$\x22]+</span><br><span class="line">验证汉字：^[\u4e00-\u9fa5],&#123;0,&#125;$</span><br><span class="line">验证Email地址：^\w+[-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$</span><br><span class="line">验证InternetURL：^http:&#x2F;&#x2F;([\w-]+\.)+[\w-]+(&#x2F;[\w-.&#x2F;?%&amp;&#x3D;]*)?$ ；^[a-zA-z]+:&#x2F;&#x2F;(w+(-w+)*)(.(w+(-w+)*))*(?S*)?$</span><br><span class="line">验证电话号码：^(\(\d&#123;3,4&#125;\)|\d&#123;3,4&#125;-)?\d&#123;7,8&#125;$：--正确格式为：XXXX-XXXXXXX，XXXX- XXXXXXXX，XXX-XXXXXXX，XXX-XXXXXXXX，XXXXXXX，XXXXXXXX。</span><br><span class="line">验证身份证号（15位或18位数字）：^\d&#123;15&#125;|\d&#123;&#125;18$</span><br><span class="line">验证一年的12个月：^(0?[1-9]|1[0-2])$ 正确格式为：“01”-“09”和“1”“12”</span><br><span class="line">验证一个月的31天：^((0?[1-9])|((1|2)[0-9])|30|31)$  正确格式为：01、09和1、31。</span><br><span class="line">整数：^-?\d+$</span><br><span class="line">非负浮点数（正浮点数 + 0）：^\d+(\.\d+)?$</span><br><span class="line">正浮点数  ^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$</span><br><span class="line">非正浮点数（负浮点数 + 0） ^((-\d+(\.\d+)?)|(0+(\.0+)?))$</span><br><span class="line">负浮点数 ^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$</span><br><span class="line">浮点数 ^(-?\d+)(\.\d+)?$</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java使用BigDecimal进行精确运算</title>
-    <url>/2017/05/17/20170517-bigdecimal/</url>
+    <url>/2017/05/17/2017-05-17-Java%E4%BD%BF%E7%94%A8BigDecimal%E8%BF%9B%E8%A1%8C%E7%B2%BE%E7%A1%AE%E8%BF%90%E7%AE%97/</url>
     <content><![CDATA[<p>Java中会遇到使用浮点数进行运算，比如当你运行下面代码时，</p>
 <p><code>System.out.println(0.06+0.01);</code></p>
 <p>你以为结果是<code>0.06</code>？当你运行完发现结果居然是 <code>0.06999999999999999</code></p>
@@ -602,15 +545,123 @@
       </tags>
   </entry>
   <entry>
-    <title>常用的一些正则表达式</title>
-    <url>/2017/05/22/20170522-regexp/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">^[1-9]d*$　 　 &#x2F;&#x2F;匹配正整数</span><br><span class="line">^-[1-9]d*$ 　 &#x2F;&#x2F;匹配负整数</span><br><span class="line">^-?[1-9]d*$　　 &#x2F;&#x2F;匹配整数</span><br><span class="line">^[1-9]d*|0$　 &#x2F;&#x2F;匹配非负整数（正整数 + 0）</span><br><span class="line">^-[1-9]d*|0$　　 &#x2F;&#x2F;匹配非正整数（负整数 + 0）</span><br><span class="line">^[1-9]d*.d*|0.d*[1-9]d*$　　 &#x2F;&#x2F;匹配正浮点数</span><br><span class="line">^-([1-9]d*.d*|0.d*[1-9]d*)$　 &#x2F;&#x2F;匹配负浮点数</span><br><span class="line">^-?([1-9]d*.d*|0.d*[1-9]d*|0?.0+|0)$　 &#x2F;&#x2F;匹配浮点数</span><br><span class="line">^[1-9]d*.d*|0.d*[1-9]d*|0?.0+|0$　　 &#x2F;&#x2F;匹配非负浮点数（正浮点数 + 0）</span><br><span class="line">^(-([1-9]d*.d*|0.d*[1-9]d*))|0?.0+|0$　　&#x2F;&#x2F;匹配非正浮点数（负浮点数 + 0）</span><br><span class="line">验证数字：^[0-9]*$</span><br><span class="line">验证n位的数字：^\d&#123;n&#125;$</span><br><span class="line">验证至少n位数字：^\d&#123;n,&#125;$</span><br><span class="line">验证m-n位的数字：^\d&#123;m,n&#125;$</span><br><span class="line">验证零和非零开头的数字：^(0|[1-9][0-9]*)$</span><br><span class="line">验证有两位小数的正实数：^[0-9]+(.[0-9]&#123;2&#125;)?$</span><br><span class="line">验证有1-3位小数的正实数：^[0-9]+(.[0-9]&#123;1,3&#125;)?$</span><br><span class="line">验证非零的正整数：^\+?[1-9][0-9]*$</span><br><span class="line">验证非零的负整数：^\-[1-9][0-9]*$</span><br><span class="line">验证非负整数（正整数 + 0） ^\d+$</span><br><span class="line">验证非正整数（负整数 + 0） ^((-\d+)|(0+))$</span><br><span class="line">验证长度为3的字符：^.&#123;3&#125;$</span><br><span class="line">验证由26个英文字母组成的字符串：^[A-Za-z]+$</span><br><span class="line">验证由26个大写英文字母组成的字符串：^[A-Z]+$</span><br><span class="line">验证由26个小写英文字母组成的字符串：^[a-z]+$</span><br><span class="line">验证由数字和26个英文字母组成的字符串：^[A-Za-z0-9]+$</span><br><span class="line">验证由数字、26个英文字母或者下划线组成的字符串：^\w+$</span><br><span class="line">验证用户密码:^[a-zA-Z]\w&#123;5,17&#125;$ 正确格式为：以字母开头，长度在6-18之间，只能包含字符、数字和下划线。</span><br><span class="line">验证是否含有 ^%&amp;&#39;,;&#x3D;?$\&quot; 等字符：[^%&amp;&#39;,;&#x3D;?$\x22]+</span><br><span class="line">验证汉字：^[\u4e00-\u9fa5],&#123;0,&#125;$</span><br><span class="line">验证Email地址：^\w+[-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$</span><br><span class="line">验证InternetURL：^http:&#x2F;&#x2F;([\w-]+\.)+[\w-]+(&#x2F;[\w-.&#x2F;?%&amp;&#x3D;]*)?$ ；^[a-zA-z]+:&#x2F;&#x2F;(w+(-w+)*)(.(w+(-w+)*))*(?S*)?$</span><br><span class="line">验证电话号码：^(\(\d&#123;3,4&#125;\)|\d&#123;3,4&#125;-)?\d&#123;7,8&#125;$：--正确格式为：XXXX-XXXXXXX，XXXX- XXXXXXXX，XXX-XXXXXXX，XXX-XXXXXXXX，XXXXXXX，XXXXXXXX。</span><br><span class="line">验证身份证号（15位或18位数字）：^\d&#123;15&#125;|\d&#123;&#125;18$</span><br><span class="line">验证一年的12个月：^(0?[1-9]|1[0-2])$ 正确格式为：“01”-“09”和“1”“12”</span><br><span class="line">验证一个月的31天：^((0?[1-9])|((1|2)[0-9])|30|31)$  正确格式为：01、09和1、31。</span><br><span class="line">整数：^-?\d+$</span><br><span class="line">非负浮点数（正浮点数 + 0）：^\d+(\.\d+)?$</span><br><span class="line">正浮点数  ^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$</span><br><span class="line">非正浮点数（负浮点数 + 0） ^((-\d+(\.\d+)?)|(0+(\.0+)?))$</span><br><span class="line">负浮点数 ^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$</span><br><span class="line">浮点数 ^(-?\d+)(\.\d+)?$</span><br></pre></td></tr></table></figure>]]></content>
+    <title>JavaScript Blob对象类型介绍和使用</title>
+    <url>/2017/05/25/2017-05-25-JavaScript%20Blob%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>Blob 是什么？ 这里说的是一种JavaScript的对象类型。Oracle 中也有类似的栏位类型。</p>
+<a id="more"></a>
+
+<p>使用旧方法创建 Blob 对象。</p>
+<p>旧的方法使用 BlobBuilder 来创建一个Blob 实例，并且使用一个 append() 方法，将字符串（或者 ArrayBuffer 或者 Blob，此处用 string 举例）插入，一旦数据插入成功，就可以使用 getBlob() 方法设置一个 mime 。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> builder = <span class="keyword">new</span> BolbBuilder();</span></span><br><span class="line"><span class="javascript">    builder.append(<span class="string">&quot;Hello World!&quot;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> blob = builder.getBlob(<span class="string">&quot;text/plain&quot;</span>);  </span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>新方法创建Blob 对象</p>
+<p>在新的方法中直接可以通过 Blob() 的构造函数来创建了。</p>
+<p>构造函数，接受两个参数，第一个为一个数据序列，可以是任意格式的值，例如，任意数量的字符串，Blobs 以及 ArrayBuffers。第二个参数，是一个包含了两个属性的对象，其两个属性分别是：</p>
+<p>type – MIME 的类型。</p>
+<p>endings – 决定 append() 的数据格式，（数据中的 \n 如何被转换）可以取值为 “transparent” 或者 “native”（t* 的话不变，n* 的话按操作系统转换；t* 为默认） </p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([<span class="string">&quot;Hello World!&quot;</span>],&#123;<span class="attr">type</span>:<span class="string">&quot;text/plain&quot;</span>&#125;);  </span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Blob的应用</p>
+<p>大文件分割（slice() 方法）</p>
+<p>slice() 方法接受三个参数，起始偏移量，结束偏移量，还有可选的 mime 类型。如果 mime 类型，没有设置，那么新的 Blob 对象的 mime 类型和父级一样。</p>
+<p>当要上传大文件的时候，此方法非常有用，可以将大文件分割分段，然后各自上传，因为分割之后的 Blob 对象和原始的是独立存在的。</p>
+<p>不过目前浏览器实现此方法还没有统一，火狐使用的是 mozSlice() ，Chrome 使用的是 webkitSlice() ，其他浏览器则正常的方式 slice() </p>
+<p>可以写一个兼容各浏览器的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sliceBlob</span>(<span class="params">blob, start, end, type</span>) </span>&#123;</span><br><span class="line">    type = type || blob.type;</span><br><span class="line">    <span class="keyword">if</span> (blob.mozSlice) &#123;</span><br><span class="line">        <span class="keyword">return</span> blob.mozSlice(start, end, type);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (blob.webkitSlice) &#123;</span><br><span class="line">        <span class="keyword">return</span> blob.webkitSlice(start, end type);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;This doesn&#x27;t work!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在Chrome 中指定下载的文件名。</p>
+]]></content>
       <categories>
-        <category>Java</category>
+        <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows环境下如何将免安装版Tomcat注册成系统服务</title>
+    <url>/2017/05/31/2017-05-31-Windows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%A6%82%E4%BD%95%E5%B0%86%E5%85%8D%E5%AE%89%E8%A3%85%E7%89%88Tomcat%E6%B3%A8%E5%86%8C%E6%88%90%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<p>实际工作中会遇到电脑上安装多个Tomcat，当我们选用免安装的zip包来安装时，为了操作方便，会将Tomcat注册为系统服务，那应该如何操作呢？</p>
+<a id="more"></a>
+
+<p>注册服务：</p>
+<blockquote>
+<p>在DOS命令行模式下，cd到tomcat的bin目录下。</p>
+</blockquote>
+<blockquote>
+<p>在tomcat的bin目录下可以看到有一个service.bat的批处理文件，这个文件就是为我们将tomcat注册成系统服务所用。有兴趣的可以打开看看批处理文件里面的内容。</p>
+</blockquote>
+<blockquote>
+<p>执行命令：</p>
+<p><code>service.bat install 服务名</code>  </p>
+<p>后面的服务名可以随便取，别跟系统已有的服务名冲突就行。如果成功可以看到以下提示信息：</p>
+<p><code>The Service &#39;服务名&#39; has been installed</code></p>
+</blockquote>
+<p>卸载服务：</p>
+<blockquote>
+<p>前两步骤和上面一致。执行命令：</p>
+<p><code>service.bat uninstall 服务名</code></p>
+<p>移除成功的提示信息：</p>
+<p><code>The Service ‘服务名&#39; has been removed</code></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Tomcat</category>
+      </categories>
+      <tags>
+        <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows环境下通过Archive包安装MySQL</title>
+    <url>/2018/12/01/2018-12-01-Windows%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%80%9A%E8%BF%87Archive%E5%8C%85%E5%AE%89%E8%A3%85MySQL/</url>
+    <content><![CDATA[<ol>
+<li><p>打开MySQL官方网站，注意，Windows环境下使用Installer版本，傻瓜式安装，这里我们选择Archive版本，使用压缩包版本。<a href="https://downloads.mysql.com/archives/community/">下载传送门</a></p>
+<p><img src="/images/2020-12/2018-12-01-001.png"></p>
+</li>
+<li><p>下载后解压到指定目录，目录结构如下：</p>
+<p><img src="/images/2020-12/2018-12-01-002.png"></p>
+</li>
+<li><p>、在解压的根目录新建my.ini文件，填写主要的参数：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[mysql]</span></span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="comment">#设置3308端口</span></span><br><span class="line"><span class="attr">port</span>=<span class="number">3308</span></span><br><span class="line"><span class="comment"># 设置mysql的安装目录</span></span><br><span class="line"><span class="attr">basedir</span>=D:\Program Files\MySQL\mysql-<span class="number">5.7</span>.<span class="number">21</span>-winx64</span><br><span class="line"><span class="comment"># 设置mysql数据库的数据的存放目录</span></span><br><span class="line"><span class="attr">datadir</span>=D:\Program Files\MySQL\mysql-<span class="number">5.7</span>.<span class="number">21</span>-winx64\data </span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"><span class="comment"># 服务端使用的字符集默认为8比特编码的latin1字符集</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入到bin目录中，在此目录中打开命令窗口，初始化数据库，会自动根据配置生成data目录</p>
+<p>输入：<code>mysqld --initialize</code></p>
+<p><img src="/images/2020-12/2018-12-01-003.png"></p>
+</li>
+<li><p>将MySQL注册为系统服务，<strong>注意：这里一定要用管理员权限运行命令窗口，否则可能无权限创建服务。</strong></p>
+<p>输入：<code>mysqld -install mysql-3308</code></p>
+<p>服务名可以自定义，我这里用了<code>mysql-3308</code>（删除服务的命令为：<code>mysqld -remove mysql-3308</code>）</p>
+<p><img src="/images/2020-12/2018-12-01-004.png"></p>
+</li>
+<li><p>在服务列表中启动服务</p>
+<p><img src="/images/2020-12/2018-12-01-005.png"></p>
+</li>
+<li><p>在初始化后生成的data目录中找到<code>主机名.err</code>的文件，搜索<code>A temporary password</code>，就可以找到生成的临时密码</p>
+<p><img src="/images/2020-12/2018-12-01-006.png"></p>
+</li>
+<li><p>通过临时密码登录mysql，并修改密码，因为临时密码可以登录，但是不能执行操作</p>
+<p>在mysql的bin目录输入：<code>mysql -uroot -p</code></p>
+<p>输入临时密码后登录，要想在全局都使用myql的命令，需要将mysql的bin目录配置到环境变量中，和配置JDK方法一致，这里不再赘述。</p>
+<p>输入：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;root123&#39;</span><br></pre></td></tr></table></figure>
+
+<p>这里我将root用户的密码修改为了<code>root123</code></p>
+</li>
+<li><p>下来我们为mysql的root用户开启远程连接，这样在局域网内其他机器就可以连接了</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;root123&#39; WITH GRANT OPTION;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">FLUSH  PRIVILEGES;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>至此，MySQL安装就全部完成了，安装过程如遇到什么问题欢迎留言，留言时记得留下邮箱哦。</p>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
       </tags>
   </entry>
 </search>
