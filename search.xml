@@ -26,6 +26,40 @@
       </tags>
   </entry>
   <entry>
+    <title>Windows环境下如何将免安装版Tomcat注册成系统服务</title>
+    <url>/2017/05/31/2017-05-31-tomcat-service/</url>
+    <content><![CDATA[<p>实际工作中会遇到电脑上安装多个Tomcat，当我们选用免安装的zip包来安装时，为了操作方便，会将Tomcat注册为系统服务，那应该如何操作呢？</p>
+<a id="more"></a>
+
+<p>注册服务：</p>
+<blockquote>
+<p>在DOS命令行模式下，cd到tomcat的bin目录下。</p>
+</blockquote>
+<blockquote>
+<p>在tomcat的bin目录下可以看到有一个service.bat的批处理文件，这个文件就是为我们将tomcat注册成系统服务所用。有兴趣的可以打开看看批处理文件里面的内容。</p>
+</blockquote>
+<blockquote>
+<p>执行命令：</p>
+<p><code>service.bat install 服务名</code>  </p>
+<p>后面的服务名可以随便取，别跟系统已有的服务名冲突就行。如果成功可以看到以下提示信息：</p>
+<p><code>The Service &#39;服务名&#39; has been installed</code></p>
+</blockquote>
+<p>卸载服务：</p>
+<blockquote>
+<p>前两步骤和上面一致。执行命令：</p>
+<p><code>service.bat uninstall 服务名</code></p>
+<p>移除成功的提示信息：</p>
+<p><code>The Service ‘服务名&#39; has been removed</code></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Tomcat</category>
+      </categories>
+      <tags>
+        <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaScript Blob对象类型介绍和使用</title>
     <url>/2017/05/25/2017-05-25-blob/</url>
     <content><![CDATA[<p>Blob 是什么？ 这里说的是一种JavaScript的对象类型。Oracle 中也有类似的栏位类型。</p>
@@ -459,6 +493,62 @@
       </tags>
   </entry>
   <entry>
+    <title>SQL 视图</title>
+    <url>/2017/05/09/20170509-sqlserver-view/</url>
+    <content><![CDATA[<ol>
+<li><p>SQL CREATE VIEW 语句</p>
+<p>什么是视图？</p>
+<p>在 SQL 中，视图是基于 SQL 语句的结果集的可视化的表。</p>
+<p>视图包含行和列，就像一个真实的表。视图中的字段就是来自一个或多个数据库中的真实的表中的字段。我们可以向视图添加 SQL 函数、WHERE 以及 JOIN 语句，我们也可以提交数据，就像这些来自于某个单一的表。</p>
+<p>注释：数据库的设计和结构不会受到视图中的函数、where 或 join 语句的影响。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- SQL CREATE VIEW 语法</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> view_name <span class="keyword">AS</span> </span><br><span class="line">    <span class="keyword">SELECT</span> column_name(s) <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> condition</span><br></pre></td></tr></table></figure>
+
+<p>注释：视图总是显示最近的数据。每当用户查询视图时，数据库引擎通过使用 SQL 语句来重建数据。</p>
+</li>
+<li><p>SQL CREATE VIEW 实例</p>
+<p>可以从某个查询内部、某个存储过程内部，或者从另一个视图内部来使用视图。通过向视图添加函数、join 等等，我们可以向用户精确地提交我们希望提交的数据。</p>
+<p>样本数据库 Northwind 拥有一些被默认安装的视图。视图 “Current Product List” 会从 Products 表列出所有正在使用的产品。这个视图使用下列 SQL 创建：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> [<span class="keyword">Current</span> Product <span class="keyword">List</span>] <span class="keyword">AS</span></span><br><span class="line">    <span class="keyword">SELECT</span> ProductID,ProductName <span class="keyword">FROM</span> Products <span class="keyword">WHERE</span> Discontinued=<span class="keyword">No</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以查询上面这个视图：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> [<span class="keyword">Current</span> Product <span class="keyword">List</span>]</span><br></pre></td></tr></table></figure>
+
+<p>Northwind 样本数据库的另一个视图会选取 Products 表中所有单位价格高于平均单位价格的产品：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> [Products Above Average Price] <span class="keyword">AS</span></span><br><span class="line">    <span class="keyword">SELECT</span> ProductName,UnitPrice <span class="keyword">FROM</span> Products </span><br><span class="line">    <span class="keyword">WHERE</span> UnitPrice&gt;(<span class="keyword">SELECT</span> <span class="keyword">AVG</span>(UnitPrice) <span class="keyword">FROM</span> Products) </span><br></pre></td></tr></table></figure>
+
+<p>我们可以像这样查询上面这个视图：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> [Products Above Average Price]</span><br></pre></td></tr></table></figure>
+
+<p>另一个来自 Northwind 数据库的视图实例会计算在 1997 年每个种类的销售总数。请注意，这个视图会从另一个名为 “Product Sales for 1997” 的视图那里选取数据：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> [<span class="keyword">Category</span> Sales <span class="keyword">For</span> <span class="number">1997</span>] <span class="keyword">AS</span></span><br><span class="line">    <span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> CategoryName,<span class="keyword">Sum</span>(ProductSales) <span class="keyword">AS</span> CategorySales</span><br><span class="line">    <span class="keyword">FROM</span> [Product Sales <span class="keyword">for</span> <span class="number">1997</span>] <span class="keyword">GROUP</span> <span class="keyword">BY</span> CategoryName </span><br></pre></td></tr></table></figure>
+
+<p>我们可以像这样查询上面这个视图：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> [<span class="keyword">Category</span> Sales <span class="keyword">For</span> <span class="number">1997</span>]</span><br></pre></td></tr></table></figure>
+
+<p>我们也可以向查询添加条件。现在，我们仅仅需要查看 “Beverages” 类的全部销量：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> [<span class="keyword">Category</span> Sales <span class="keyword">For</span> <span class="number">1997</span>]</span><br><span class="line"><span class="keyword">WHERE</span> CategoryName=<span class="string">&#x27;Beverages&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>SQL 更新视图</p>
+<p>可以使用下面的语法来更新视图：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">SQL <span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">VIEW</span> Syntax</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">VIEW</span> view_name <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> column_name(s)</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> condition</span><br></pre></td></tr></table></figure>
+
+<p>现在，我们希望向 “Current Product List” 视图添加 “Category” 列。我们将通过下列 SQL 更新视图：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> [<span class="keyword">Current</span> Product <span class="keyword">List</span>] <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> ProductID,ProductName,<span class="keyword">Category</span></span><br><span class="line"><span class="keyword">FROM</span> Products</span><br><span class="line"><span class="keyword">WHERE</span> Discontinued=<span class="keyword">No</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>SQL 撤销视图</p>
+<p>可以通过 DROP VIEW 命令来删除视图。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">SQL <span class="keyword">DROP</span> <span class="keyword">VIEW</span> Syntax</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span> view_name</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>SQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>View</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaScript location.href 与 location.search比较</title>
     <url>/2017/05/15/20170515-href&amp;search/</url>
     <content><![CDATA[<p><code>document.location.href</code> 返回完整的 URL。 </p>
@@ -478,6 +568,37 @@
       </categories>
       <tags>
         <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java使用BigDecimal进行精确运算</title>
+    <url>/2017/05/17/20170517-bigdecimal/</url>
+    <content><![CDATA[<p>Java中会遇到使用浮点数进行运算，比如当你运行下面代码时，</p>
+<p><code>System.out.println(0.06+0.01);</code></p>
+<p>你以为结果是<code>0.06</code>？当你运行完发现结果居然是 <code>0.06999999999999999</code></p>
+<p>这是为什么呢？究竟该如何运算呢？</p>
+<a id="more"></a>
+
+<p>普通的浮点型数字的运算</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test_1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="number">0.06</span>+<span class="number">0.01</span>);</span><br><span class="line">        System.out.println(<span class="number">1.0</span>-<span class="number">0.42</span>);</span><br><span class="line">        System.out.println(<span class="number">4.015</span>*<span class="number">100</span>);</span><br><span class="line">        System.out.println(<span class="number">303.1</span>/<span class="number">1000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0.06999999999999999</span><br><span class="line">0.5800000000000001</span><br><span class="line">401.49999999999994</span><br><span class="line">0.30310000000000004</span><br></pre></td></tr></table></figure>
+
+<p>这是由于二进制无法精确的表示浮点数而产生的误差，想要精确的计算浮点数则就用到了BigDecimal类。</p>
+<p>BigDecimal 类提供以下操作：算术、标度操作、舍入、比较、哈希算法和格式转换。</p>
+<p>是用户用来控制数值精度和舍入方法的类，适合用于解决数据精度过滤问题。对大量的数据进行精度变换的时候用此类很简便。</p>
+<p>实例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">double</span> num=<span class="number">12.345623</span>;  </span><br><span class="line">    BigDecimal value1=<span class="keyword">new</span> BigDecimal(num);  </span><br><span class="line">    System.out.println(<span class="string">&quot;数字构造&quot;</span> + value1);  </span><br><span class="line">    BigDecimal value2=<span class="keyword">new</span> BigDecimal(Double.valueOf(num).toString());  </span><br><span class="line">    System.out.println(<span class="string">&quot;字符构造&quot;</span> + value2);  </span><br><span class="line">    System.out.println(<span class="string">&quot;由输出的结果我们可以看到使用数字类型的构造已经失真了，所以最好还是采用字符构造&quot;</span>);  </span><br><span class="line">      </span><br><span class="line">    <span class="comment">// 对于向上下距离相等的数值的舍入，保留2位小数  </span></span><br><span class="line">    <span class="comment">// setScale方法中，第一个参数是设置保留小数位数，第二个参数是这是舍入方式  </span></span><br><span class="line">    <span class="comment">// 四舍五入  </span></span><br><span class="line">    BigDecimal value = value2.setScale(<span class="number">2</span>, BigDecimal.ROUND_HALF_UP);  </span><br><span class="line">    System.out.println(<span class="string">&quot;ROUND_HALF_UP: &quot;</span> + value);  </span><br><span class="line">    <span class="comment">// 舍入趋向于零的方式  </span></span><br><span class="line">    value=value2.setScale(<span class="number">2</span>, BigDecimal.ROUND_DOWN);  </span><br><span class="line">    System.out.println(<span class="string">&quot;ROUND_DOWN: &quot;</span> + value);  </span><br><span class="line">    <span class="comment">// 舍入远离零的方式  </span></span><br><span class="line">    value = value2.setScale(<span class="number">2</span>, BigDecimal.ROUND_UP);  </span><br><span class="line">    System.out.println(<span class="string">&quot;ROUND_UP&quot;</span>+value);  </span><br><span class="line">  &#125;  </span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">数字构造12.345622999999999791498339618556201457977294921875 </span><br><span class="line">字符构造12.345623</span><br><span class="line">由输出的结果我们可以看到使用数字类型的构造已经失真了，所以最好还是采用字符构造</span><br><span class="line">ROUND_HALF_UP: 12.35 </span><br><span class="line">ROUND_DOWN: 12.34 </span><br><span class="line">ROUND_UP12.35 </span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>BigDecimal</tag>
       </tags>
   </entry>
   <entry>
