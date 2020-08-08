@@ -13,6 +13,53 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello Java</title>
+    <url>/2015/07/12/20150712-hello-java/</url>
+    <content><![CDATA[<h4 id="Hello-Java"><a href="#Hello-Java" class="headerlink" title="Hello Java!"></a>Hello Java!</h4><hr>
+<p>我的第一个Java程序。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript Blob对象类型介绍和使用</title>
+    <url>/2017/05/25/2017-05-25-blob/</url>
+    <content><![CDATA[<p>Blob 是什么？ 这里说的是一种JavaScript的对象类型。Oracle 中也有类似的栏位类型。</p>
+<a id="more"></a>
+
+<p>使用旧方法创建 Blob 对象。</p>
+<p>旧的方法使用 BlobBuilder 来创建一个Blob 实例，并且使用一个 append() 方法，将字符串（或者 ArrayBuffer 或者 Blob，此处用 string 举例）插入，一旦数据插入成功，就可以使用 getBlob() 方法设置一个 mime 。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> builder = <span class="keyword">new</span> BolbBuilder();</span></span><br><span class="line"><span class="javascript">    builder.append(<span class="string">&quot;Hello World!&quot;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> blob = builder.getBlob(<span class="string">&quot;text/plain&quot;</span>);  </span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>新方法创建Blob 对象</p>
+<p>在新的方法中直接可以通过 Blob() 的构造函数来创建了。</p>
+<p>构造函数，接受两个参数，第一个为一个数据序列，可以是任意格式的值，例如，任意数量的字符串，Blobs 以及 ArrayBuffers。第二个参数，是一个包含了两个属性的对象，其两个属性分别是：</p>
+<p>type – MIME 的类型。</p>
+<p>endings – 决定 append() 的数据格式，（数据中的 \n 如何被转换）可以取值为 “transparent” 或者 “native”（t* 的话不变，n* 的话按操作系统转换；t* 为默认） </p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([<span class="string">&quot;Hello World!&quot;</span>],&#123;<span class="attr">type</span>:<span class="string">&quot;text/plain&quot;</span>&#125;);  </span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Blob的应用</p>
+<p>大文件分割（slice() 方法）</p>
+<p>slice() 方法接受三个参数，起始偏移量，结束偏移量，还有可选的 mime 类型。如果 mime 类型，没有设置，那么新的 Blob 对象的 mime 类型和父级一样。</p>
+<p>当要上传大文件的时候，此方法非常有用，可以将大文件分割分段，然后各自上传，因为分割之后的 Blob 对象和原始的是独立存在的。</p>
+<p>不过目前浏览器实现此方法还没有统一，火狐使用的是 mozSlice() ，Chrome 使用的是 webkitSlice() ，其他浏览器则正常的方式 slice() </p>
+<p>可以写一个兼容各浏览器的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sliceBlob</span>(<span class="params">blob, start, end, type</span>) </span>&#123;</span><br><span class="line">    type = type || blob.type;</span><br><span class="line">    <span class="keyword">if</span> (blob.mozSlice) &#123;</span><br><span class="line">        <span class="keyword">return</span> blob.mozSlice(start, end, type);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (blob.webkitSlice) &#123;</span><br><span class="line">        <span class="keyword">return</span> blob.webkitSlice(start, end type);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;This doesn&#x27;t work!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在Chrome 中指定下载的文件名。</p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Eclipse报错One or more constraints have not been satisfied解决方法</title>
     <url>/2017/03/17/20170317-eclipse/</url>
     <content><![CDATA[<p>解决maven项目导入eclipse中后，代码不报错，但是项目整体报错为：One or more constraints have not been satisfied.</p>
@@ -53,6 +100,12 @@
       </tags>
   </entry>
   <entry>
+    <title>First</title>
+    <url>/2017/03/03/20170303-none/</url>
+    <content><![CDATA[<a id="more"></a>
+<!--记录一下。-->]]></content>
+  </entry>
+  <entry>
     <title>label标签使用</title>
     <url>/2017/03/09/20170309-label/</url>
     <content><![CDATA[<p>页面上使用label标签时要注意：</p>
@@ -71,19 +124,6 @@
       </categories>
       <tags>
         <tag>HTML</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello Java</title>
-    <url>/2015/07/12/20150712-hello-java/</url>
-    <content><![CDATA[<h4 id="Hello-Java"><a href="#Hello-Java" class="headerlink" title="Hello Java!"></a>Hello Java!</h4><hr>
-<p>我的第一个Java程序。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -120,18 +160,27 @@
       </tags>
   </entry>
   <entry>
-    <title>页面到达最小宽度后固定</title>
-    <url>/2017/04/07/20170407-csss/</url>
-    <content><![CDATA[<p>让页面到达最小宽度后固定不再改变，代码如下：</p>
+    <title>JavaScript JSON.parse()和JSON.stringify()用法和区别</title>
+    <url>/2017/04/12/20170412-json-parse&amp;stringify/</url>
+    <content><![CDATA[<p>JSON.parse()用于从一个字符串中解析出json对象，如：</p>
 <a id="more"></a>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">5%</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">5%</span>;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">1000px</span>; </span><br><span class="line">    <span class="attribute">width</span>: <span class="built_in">expression</span>(document.body.clientWidth &lt; <span class="number">1000</span>? <span class="string">&quot;1000px&quot;</span>: <span class="string">&quot;auto&quot;</span> ); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-]]></content>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;&#123;&quot;name&quot;: &quot;Zzz&quot;, &quot;age&quot;: &quot;23&quot;&#125;&#x27;</span>;</span><br><span class="line"><span class="built_in">JSON</span>.parse(str);</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Object</span></span><br><span class="line">    age: <span class="string">&quot;23&quot;</span></span><br><span class="line">    name: <span class="string">&quot;Zzz&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：单引号写在{}外，每个属性名都必须用双引号，否则会抛出异常。</p>
+<p>JSON.stringify()用于从一个对象解析出字符串，如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>&#125;;</span><br><span class="line"><span class="built_in">JSON</span>.stringify(obj)</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;<span class="string">&quot;a&quot;</span>: <span class="number">1</span>, <span class="string">&quot;b&quot;</span>: <span class="number">2</span>&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>CSS</category>
+        <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>CSS</tag>
+        <tag>JSON</tag>
       </tags>
   </entry>
   <entry>
@@ -147,6 +196,151 @@
       </categories>
       <tags>
         <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Eclipse打开后提示Subversion Native Library Not Available解决办法</title>
+    <url>/2017/04/14/20170414-eclipse/</url>
+    <content><![CDATA[<p>打开Eclipse后，弹出来如下：</p>
+<p><img src="/images/2017-04/2017-04-14-001.png"></p>
+<p>解决方案：</p>
+<p>Window -&gt; Preferences -&gt; Team -&gt; SVN，将SVN接口的Client修改为SVNKit(Pure JAVA) SVNKit v1.7.9.9659选项，点击OK。</p>
+<p> <img src="/images/2017-04/2017-04-14-002.png"></p>
+]]></content>
+      <categories>
+        <category>Eclipse</category>
+      </categories>
+      <tags>
+        <tag>Eclipse</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java String类的format()方式介绍和使用</title>
+    <url>/2017/04/17/20170417-string-format/</url>
+    <content><![CDATA[<p>String类的format()方法用于创建格式化的字符串以及连接多个字符串对象。熟悉C语言的同学应该还记得C语言的sprintf()方法，两者有类似之处。</p>
+<a id="more"></a>
+
+<p>format()方法有两种重载形式：</p>
+<p><code>format(String format, Object... args)</code> 新字符串使用本地语言环境，制定字符串格式和参数生成格式化的新字符串。</p>
+<p><code>format(Locale locale, String format, Object... args)</code> 使用指定的语言环境，制定字符串格式和参数生成格式化的字符串。</p>
+<p>显示不同转换符实现不同数据类型到字符串的转换，如下：</p>
+<p><img src="/images/2017-04/2017-04-17-001.png"></p>
+<p>测试：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    String str = <span class="keyword">null</span>;</span><br><span class="line">    str = String.format(<span class="string">&quot;Hi,%s&quot;</span>, <span class="string">&quot;张力&quot;</span>);</span><br><span class="line">    System.out.println(str);</span><br><span class="line">    str = String.format(<span class="string">&quot;Hi,%s:%s.%s&quot;</span>, <span class="string">&quot;张南&quot;</span>,<span class="string">&quot;张力&quot;</span>,<span class="string">&quot;张三&quot;</span>);</span><br><span class="line">    System.out.println(str);</span><br><span class="line">    </span><br><span class="line">    System.out.printf(<span class="string">&quot;字母a的大写是：%c %n&quot;</span>, <span class="string">&#x27;A&#x27;</span>);</span><br><span class="line">    System.out.printf(<span class="string">&quot;3&gt;7的结果是：%b %n&quot;</span>, <span class="number">3</span>&gt;<span class="number">7</span>); </span><br><span class="line">    System.out.printf(<span class="string">&quot;100的一半是：%d %n&quot;</span>, <span class="number">100</span>/<span class="number">2</span>); </span><br><span class="line">    System.out.printf(<span class="string">&quot;100的16进制数是：%x %n&quot;</span>, <span class="number">100</span>); </span><br><span class="line">    System.out.printf(<span class="string">&quot;100的8进制数是：%o %n&quot;</span>, <span class="number">100</span>); </span><br><span class="line">    System.out.printf(<span class="string">&quot;50元的书打8.5折扣是：%f 元%n&quot;</span>, <span class="number">50</span>*<span class="number">0.85</span>); </span><br><span class="line">    System.out.printf(<span class="string">&quot;上面价格的16进制数是：%a %n&quot;</span>, <span class="number">50</span>*<span class="number">0.85</span>); </span><br><span class="line">    System.out.printf(<span class="string">&quot;上面价格的指数表示：%e %n&quot;</span>, <span class="number">50</span>*<span class="number">0.85</span>);</span><br><span class="line">    System.out.printf(<span class="string">&quot;上面价格的指数和浮点数结果的长度较短的是：%g %n&quot;</span>, <span class="number">50</span>*<span class="number">0.85</span>);</span><br><span class="line">    System.out.printf(<span class="string">&quot;上面的折扣是%d%% %n&quot;</span>, <span class="number">85</span>);</span><br><span class="line">    System.out.printf(<span class="string">&quot;字母A的散列码是：%h %n&quot;</span>, <span class="string">&#x27;A&#x27;</span>);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Hi,张力 </span><br><span class="line">Hi,张南:张力.张三 </span><br><span class="line">字母a的大写是：A  </span><br><span class="line">3&gt;7的结果是：false  </span><br><span class="line">100的一半是：50  </span><br><span class="line">100的16进制数是：64  </span><br><span class="line">100的8进制数是：144  </span><br><span class="line">50元的书打8.5折扣是：42.500000 元 </span><br><span class="line">上面价格的16进制数是：0x1.54p5  </span><br><span class="line">上面价格的指数表示：4.250000e+01  </span><br><span class="line">上面价格的指数和浮点数结果的长度较短的是：42.5000  </span><br><span class="line">上面的折扣是85%  </span><br><span class="line">字母A的散列码是：41</span><br></pre></td></tr></table></figure>
+
+<p>搭配转换符的标志，如下：</p>
+<p><img src="/images/2017-04/2017-04-17-002.png"></p>
+<p>测试：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    String str = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">// $使用</span></span><br><span class="line">    str = String.format(<span class="string">&quot;格式参数$的使用：%1$d,%2$s&quot;</span>, <span class="number">99</span>,<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">    System.out.println(str);</span><br><span class="line">    <span class="comment">// +使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;显示正负数的符号：%+d与%d%n&quot;</span>, <span class="number">99</span>,-<span class="number">99</span>);</span><br><span class="line">    <span class="comment">// 补O使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;最牛的编号是：%03d%n&quot;</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="comment">// 空格使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;Tab键的效果是：% 8d%n&quot;</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="comment">// .使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;整数分组的效果是：%,d%n&quot;</span>, <span class="number">9989997</span>);</span><br><span class="line">    <span class="comment">// 空格和小数点后面个数</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;一本书的价格是：% 50.5f元%n&quot;</span>, <span class="number">49.8</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">格式参数$的使用：99,abc</span><br><span class="line">显示正负数的符号：+99与-99</span><br><span class="line">最牛的编号是：007</span><br><span class="line">Tab键的效果是：    7</span><br><span class="line">整数分组的效果是：9,989,997</span><br><span class="line">一本书的价格是：                     49.80000元</span><br></pre></td></tr></table></figure>
+
+<p>日期和事件字符串格式化，常见日期和时间组合的格式，如下：</p>
+<p><img src="/images/2017-04/2017-04-17-003.png"></p>
+<p>测试：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Date date = <span class="keyword">new</span> Date();</span><br><span class="line">    <span class="comment">// c的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;全部日期和时间信息：%tc%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// f的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;年-月-日格式：%tF%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// d的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;月/日/年格式：%tD%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// r的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;HH:MM:SS PM格式（12时制）：%tr%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// t的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;HH:MM:SS格式（24时制）：%tT%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// R的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;HH:MM格式（24时制）：%tR&quot;</span>, date);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">全部日期和时间信息：星期一 九月 10 10:43:36 CST 2012</span><br><span class="line">年-月-日格式：2012-09-10</span><br><span class="line">月&#x2F;日&#x2F;年格式：09&#x2F;10&#x2F;12</span><br><span class="line">HH:MM:SS PM格式（12时制）：10:43:36 上午</span><br><span class="line">HH:MM:SS格式（24时制）：10:43:36</span><br><span class="line">HH:MM格式（24时制）：10:43</span><br></pre></td></tr></table></figure>
+
+<p>定义日期格式的转换符可以使日期通过指定的转换符生成新字符串。</p>
+<p>测试：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; </span><br><span class="line">    Date date=<span class="keyword">new</span> Date();</span><br><span class="line">    <span class="comment">// b的使用，月份简称</span></span><br><span class="line">    String str = String.format(Locale.US,<span class="string">&quot;英文月份简称：%tb&quot;</span>, date);</span><br><span class="line">    System.out.println(str);</span><br><span class="line">    System.out.printf(<span class="string">&quot;本地月份简称：%tb%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// B的使用，月份全称</span></span><br><span class="line">    str = String.format(Locale.US,<span class="string">&quot;英文月份全称：%tB&quot;</span>, date);</span><br><span class="line">    System.out.println(str);</span><br><span class="line">    System.out.printf(<span class="string">&quot;本地月份全称：%tB%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// a的使用，星期简称</span></span><br><span class="line">    str = String.format(Locale.US,<span class="string">&quot;英文星期的简称：%ta&quot;</span>, date);</span><br><span class="line">    System.out.println(str);</span><br><span class="line">    <span class="comment">// A的使用，星期全称</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;本地星期的简称：%tA%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// C的使用，年前两位</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;年的前两位数字（不足两位前面补0）：%tC%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// y的使用，年后两位</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;年的后两位数字（不足两位前面补0）：%ty%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// j的使用，一年的天数</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;一年中的天数（即年的第几天）：%tj%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// m的使用，月份</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;两位数字的月份（不足两位前面补0）：%tm%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// d的使用，日（二位，不够补零）</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;两位数字的日（不足两位前面补0）：%td%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// e的使用，日（一位不补零）</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;月份的日（前面不补0）：%te&quot;</span>, date);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">英文月份简称：Sep</span><br><span class="line">本地月份简称：九月</span><br><span class="line">英文月份全称：September</span><br><span class="line">本地月份全称：九月</span><br><span class="line">英文星期的简称：Mon</span><br><span class="line">本地星期的简称：星期一</span><br><span class="line">年的前两位数字（不足两位前面补0）：20</span><br><span class="line">年的后两位数字（不足两位前面补0）：12</span><br><span class="line">一年中的天数（即年的第几天）：254</span><br><span class="line">两位数字的月份（不足两位前面补0）：09</span><br><span class="line">两位数字的日（不足两位前面补0）：10</span><br><span class="line">月份的日（前面不补0）：10</span><br></pre></td></tr></table></figure>
+
+<p>和日期格式转换符相比，时间格式的转换符要更多、更精确。它可以将时间格式化成时、分、秒甚至时毫秒等单位。格式化时间字符串的转换符如下：</p>
+<p><img src="/images/2017-04/2017-04-17-004.png"></p>
+<p>测试：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Date date = <span class="keyword">new</span> Date();</span><br><span class="line">    <span class="comment">// H的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;2位数字24时制的小时（不足2位前面补0）:%tH%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// I的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;2位数字12时制的小时（不足2位前面补0）:%tI%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// k的使用 </span></span><br><span class="line">    System.out.printf(<span class="string">&quot;2位数字24时制的小时（前面不补0）:%tk%n&quot;</span>, date); </span><br><span class="line">    <span class="comment">// l的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;2位数字12时制的小时（前面不补0）:%tl%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// M的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;2位数字的分钟（不足2位前面补0）:%tM%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// S的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;2位数字的秒（不足2位前面补0）:%tS%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// L的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;3位数字的毫秒（不足3位前面补0）:%tL%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// N的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;9位数字的毫秒数（不足9位前面补0）:%tN%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// p的使用</span></span><br><span class="line">    String str = String.format(Locale.US, <span class="string">&quot;小写字母的上午或下午标记(英)：%tp&quot;</span>, date);</span><br><span class="line">    System.out.println(str);</span><br><span class="line">    System.out.printf(<span class="string">&quot;小写字母的上午或下午标记（中）：%tp%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// z的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;相对于GMT的RFC822时区的偏移量:%tz%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// Z的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;时区缩写字符串:%tZ%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">// s的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;1970-1-1 00:00:00 到现在所经过的秒数：%ts%n&quot;</span>, date);</span><br><span class="line">    <span class="comment">//Q的使用</span></span><br><span class="line">    System.out.printf(<span class="string">&quot;1970-1-1 00:00:00 到现在所经过的毫秒数：%tQ%n&quot;</span>, date);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2位数字24时制的小时（不足2位前面补0）:11</span><br><span class="line">2位数字12时制的小时（不足2位前面补0）:11</span><br><span class="line">2位数字24时制的小时（前面不补0）:11</span><br><span class="line">2位数字12时制的小时（前面不补0）:11</span><br><span class="line">2位数字的分钟（不足2位前面补0）:03</span><br><span class="line">2位数字的秒（不足2位前面补0）:52</span><br><span class="line">3位数字的毫秒（不足3位前面补0）:773</span><br><span class="line">9位数字的毫秒数（不足9位前面补0）:773000000</span><br><span class="line">小写字母的上午或下午标记(英)：am</span><br><span class="line">小写字母的上午或下午标记（中）：上午</span><br><span class="line">相对于GMT的RFC822时区的偏移量:+0800</span><br><span class="line">时区缩写字符串:CST</span><br><span class="line">1970-1-1 00:00:00 到现在所经过的秒数：1347246232</span><br><span class="line">1970-1-1 00:00:00 到现在所经过的毫秒数：1347246232773</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>利用Spring MVC拦截器和自定义注解实现简易的认证</title>
+    <url>/2017/04/21/20170421-simple-auth-verify/</url>
+    <content><![CDATA[<p>利用Spring MVC提供的HandlerInterceptor拦截器，实现一个简易的身份权限认证。</p>
+<a id="more"></a>
+<p>HandlerInterceptor是Spring MVC提供的拦截器接口，大致源码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HandlerInterceptor</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(  </span></span></span><br><span class="line"><span class="function"><span class="params">        HttpServletRequest request, HttpServletResponse response,   </span></span></span><br><span class="line"><span class="function"><span class="params">        Object handler)</span>   </span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> Exception</span>;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(  </span></span></span><br><span class="line"><span class="function"><span class="params">        HttpServletRequest request, HttpServletResponse response,   </span></span></span><br><span class="line"><span class="function"><span class="params">        Object handler, ModelAndView modelAndView)</span>   </span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> Exception</span>;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(  </span></span></span><br><span class="line"><span class="function"><span class="params">        HttpServletRequest request, HttpServletResponse response,   </span></span></span><br><span class="line"><span class="function"><span class="params">        Object handler, Exception ex)</span>  </span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> Exception</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>preHandle：在执行action里面的处理逻辑之前执行，它返回的是boolean，如果返回true，会接着执行postHandle和afterCompletion，如果返回false则中断执行。</p>
+<p>postHandle：在执行action里面的逻辑后返回视图之前执行。</p>
+<p>afterCompletion：在action返回视图后执行。</p>
+</blockquote>
+<p>HandlerInterceptorAdapter适配器是Spring MVC对HandlerInterceptor 的默认实现，里面的3个方法没有做任何处理，在preHandle方法直接返回true，这样继承HandlerInterceptorAdapter后只需要实现3个方法中需要的方法即可，而不像继承HandlerInterceptor一样不管是否需要3个方法都要实现。</p>
+<p>当然借助于HandlerInterceptor可以实现很多其它功能，比如日志记录、请求处理时间分析等，权限验证只是其中之一。</p>
+<p>开始完成注解式权限验证的功能。</p>
+<p>Controller 和 Action：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"> </span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/account&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountController</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="meta">@RequestMapping(value=&quot;/login&quot;, method = &#123;RequestMethod.GET&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">login</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;login&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>views文件夹下的视图login.jsp：</p>
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">&quot;java&quot;</span> contentType=<span class="string">&quot;text/html; charset=UTF-8&quot;</span> pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC <span class="string">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</span> <span class="string">&quot;http://www.w3.org/TR/html4/loose.dtd&quot;</span>&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta http-equiv=<span class="string">&quot;Content-Type&quot;</span> content=<span class="string">&quot;text/html; charset=UTF-8&quot;</span>&gt;</span><br><span class="line">        &lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        这里是登录界面</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>自定义注解 AuthPasspor：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.annotation.Documented;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Inherited;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"> </span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> AuthPassport &#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">validate</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>自定义拦截器AuthInterceptor继承HandlerInterceptorAdapter：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.method.HandlerMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.handler.HandlerInterceptorAdapter;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AuthInterceptor</span> <span class="keyword">extends</span> <span class="title">HandlerInterceptorAdapter</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">if</span>(handler.getClass().isAssignableFrom(HandlerMethod.class))&#123;</span><br><span class="line">            AuthPassport authPassport = ((HandlerMethod) handler).getMethodAnnotation(AuthPassport.class);</span><br><span class="line">            <span class="comment">// 没有声明需要权限,或者声明不验证权限</span></span><br><span class="line">            <span class="keyword">if</span>(authPassport == <span class="keyword">null</span> || authPassport.validate() == <span class="keyword">false</span>)&#123;                </span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">// 在这里实现自己的权限验证逻辑</span></span><br><span class="line">                <span class="keyword">if</span>(<span class="keyword">false</span>)&#123;</span><br><span class="line">                    <span class="comment">// 如果验证成功返回true（这里直接写false来模拟验证失败的处理）</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">// 如果验证失败 返回到登录界面</span></span><br><span class="line">                    response.sendRedirect(<span class="string">&quot;account/login&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;  </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置项目的springservlet-config.xml：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span> </span><br><span class="line">    <span class="comment">&lt;!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 --&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.web.servlet.i18n.LocaleChangeInterceptor&quot;</span> /&gt;</span> </span><br><span class="line">    <span class="comment">&lt;!-- 如果不定义 mvc:mapping path 将拦截所有的URL请求 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;com.demo.web.auth.AuthInterceptor&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样在执行每个action方法是都会调用AuthInterceptor处理，当判断action上有无定义AuthPassport注解时就会执行里面的权限验证逻辑。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Spring MVC</tag>
+        <tag>Annotation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>请求参数乱码或是返回结果乱码问题解决</title>
+    <url>/2017/04/25/20170425-chinese/</url>
+    <content><![CDATA[<ol>
+<li><p>JSP页面出现乱码时，检查在页面最上面是否含有如下：</p>
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%<span class="meta">@page</span> pageEncoding=<span class="string">&quot;UTF-8&quot;</span> contentType=<span class="string">&quot;text/html; charset=UTF-8&quot;</span> %&gt;  </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>检查数据库链接的配置是否指定了正确的字符集</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">jdbc.mysql.url</span>=<span class="string">jdbc:mysql://localhost:3306/db?useUnicode=true&amp;characterEncoding=utf8&amp;allowMultiQueries=true </span></span><br></pre></td></tr></table></figure>
+
+<p>还需要查看数据的字符集配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SHOW VARIABLES LIKE &#39;character_set_%&#39;; </span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2017-04/2017-04-25-001.png"></p>
+<p>发现character_set_server=latin1,我们需要把它改为utf-8</p>
+</li>
+<li><p>检查项目web.xml中配置是否配置了全局字符编码过滤器</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CharacterFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CharacterFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>后台接收到的get请求参数中文乱码时，检查tomcat容器中的server.xml是否配置了编码字符集</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">&quot;80&quot;</span> <span class="attr">protocol</span>=<span class="string">&quot;HTTP/1.1&quot;</span> </span></span><br><span class="line"><span class="tag">           <span class="attr">connectionTimeout</span>=<span class="string">&quot;20000&quot;</span> <span class="attr">redirectPort</span>=<span class="string">&quot;8443&quot;</span> <span class="attr">URIEncoding</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Spring MVC</tag>
+        <tag>参数乱码</tag>
       </tags>
   </entry>
   <entry>
@@ -230,6 +424,72 @@
       </categories>
       <tags>
         <tag>Others</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQLServer分页查询</title>
+    <url>/2017/05/08/20170508-sqlserver-page/</url>
+    <content><![CDATA[<p>在SQLServer 2005之前一直借助<code>top</code>关键字来实现分页查询，不过效率低，在SQLServer 2005及其之后的版本都使用<code>row_number()</code>解析函数来完成分页查询，效率有了很大的提高，不过sql语句比较复杂，下面给出分页查询的通式：</p>
+<a id="more"></a>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * firstIndex:起始索引</span></span><br><span class="line"><span class="comment"> * pageSize:每页显示的数量</span></span><br><span class="line"><span class="comment"> * orderColumn:排序的字段名</span></span><br><span class="line"><span class="comment"> * sql:可以是简单的单表查询语句，也可以是复杂的多表联合查询语句</span></span><br><span class="line"><span class="comment"> */</span>    </span><br><span class="line"><span class="keyword">select</span> top pageSize o.* <span class="keyword">from</span> (<span class="keyword">select</span> row_number() <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> orderColumn) <span class="keyword">as</span> rownumber, * <span class="keyword">from</span>(<span class="keyword">sql</span>) <span class="keyword">as</span> o <span class="keyword">where</span> rownumber&gt;firstIndex;</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>SQLServer</category>
+      </categories>
+      <tags>
+        <tag>SQLServer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript location.href 与 location.search比较</title>
+    <url>/2017/05/15/20170515-href&amp;search/</url>
+    <content><![CDATA[<p><code>document.location.href</code> 返回完整的 URL。 </p>
+<p>如：<code>http://www.cftea.com/foo.asp?p=1</code></p>
+<p><code>document.location.search</code>是从当前URL的?号开始的字符串</p>
+<p>如：<code>http://www.51js.com/viewthread.php?tid=22720</code></p>
+<p>它返回的就是：<code>?tid=22720</code></p>
+<p>通过location.search可以轻易取到连接后面带的参数，这个可用户父窗口向子窗口传递参数</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">openTable</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> feathers=<span class="string">&quot;status=no, width=650px, height=670px, top=0px, menubar=no, resizable=no, scrollbars=yes, toolbar=no, channelmode=no&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> openWin = <span class="built_in">window</span>.open(<span class="string">&quot;allInfo.html?&quot;</span>+id+<span class="string">&quot;,&quot;</span>+<span class="keyword">new</span> <span class="built_in">Date</span>().getTime(),<span class="string">&quot;declare&quot;</span>,feathers);</span><br><span class="line">    openWin.focus();  </span><br><span class="line">&#125; </span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<p>在allInfo.html页面中如果我们要获取id的值的话，可以这样获得</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span>   </span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> params= <span class="built_in">window</span>.location.search;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> arr = params.substring(<span class="number">1</span>).split(<span class="string">&quot;,&quot;</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> id = arr[<span class="number">0</span>];</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常用的一些正则表达式</title>
+    <url>/2017/05/22/20170522-regexp/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">^[1-9]d*$　 　 &#x2F;&#x2F;匹配正整数</span><br><span class="line">^-[1-9]d*$ 　 &#x2F;&#x2F;匹配负整数</span><br><span class="line">^-?[1-9]d*$　　 &#x2F;&#x2F;匹配整数</span><br><span class="line">^[1-9]d*|0$　 &#x2F;&#x2F;匹配非负整数（正整数 + 0）</span><br><span class="line">^-[1-9]d*|0$　　 &#x2F;&#x2F;匹配非正整数（负整数 + 0）</span><br><span class="line">^[1-9]d*.d*|0.d*[1-9]d*$　　 &#x2F;&#x2F;匹配正浮点数</span><br><span class="line">^-([1-9]d*.d*|0.d*[1-9]d*)$　 &#x2F;&#x2F;匹配负浮点数</span><br><span class="line">^-?([1-9]d*.d*|0.d*[1-9]d*|0?.0+|0)$　 &#x2F;&#x2F;匹配浮点数</span><br><span class="line">^[1-9]d*.d*|0.d*[1-9]d*|0?.0+|0$　　 &#x2F;&#x2F;匹配非负浮点数（正浮点数 + 0）</span><br><span class="line">^(-([1-9]d*.d*|0.d*[1-9]d*))|0?.0+|0$　　&#x2F;&#x2F;匹配非正浮点数（负浮点数 + 0）</span><br><span class="line">验证数字：^[0-9]*$</span><br><span class="line">验证n位的数字：^\d&#123;n&#125;$</span><br><span class="line">验证至少n位数字：^\d&#123;n,&#125;$</span><br><span class="line">验证m-n位的数字：^\d&#123;m,n&#125;$</span><br><span class="line">验证零和非零开头的数字：^(0|[1-9][0-9]*)$</span><br><span class="line">验证有两位小数的正实数：^[0-9]+(.[0-9]&#123;2&#125;)?$</span><br><span class="line">验证有1-3位小数的正实数：^[0-9]+(.[0-9]&#123;1,3&#125;)?$</span><br><span class="line">验证非零的正整数：^\+?[1-9][0-9]*$</span><br><span class="line">验证非零的负整数：^\-[1-9][0-9]*$</span><br><span class="line">验证非负整数（正整数 + 0） ^\d+$</span><br><span class="line">验证非正整数（负整数 + 0） ^((-\d+)|(0+))$</span><br><span class="line">验证长度为3的字符：^.&#123;3&#125;$</span><br><span class="line">验证由26个英文字母组成的字符串：^[A-Za-z]+$</span><br><span class="line">验证由26个大写英文字母组成的字符串：^[A-Z]+$</span><br><span class="line">验证由26个小写英文字母组成的字符串：^[a-z]+$</span><br><span class="line">验证由数字和26个英文字母组成的字符串：^[A-Za-z0-9]+$</span><br><span class="line">验证由数字、26个英文字母或者下划线组成的字符串：^\w+$</span><br><span class="line">验证用户密码:^[a-zA-Z]\w&#123;5,17&#125;$ 正确格式为：以字母开头，长度在6-18之间，只能包含字符、数字和下划线。</span><br><span class="line">验证是否含有 ^%&amp;&#39;,;&#x3D;?$\&quot; 等字符：[^%&amp;&#39;,;&#x3D;?$\x22]+</span><br><span class="line">验证汉字：^[\u4e00-\u9fa5],&#123;0,&#125;$</span><br><span class="line">验证Email地址：^\w+[-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$</span><br><span class="line">验证InternetURL：^http:&#x2F;&#x2F;([\w-]+\.)+[\w-]+(&#x2F;[\w-.&#x2F;?%&amp;&#x3D;]*)?$ ；^[a-zA-z]+:&#x2F;&#x2F;(w+(-w+)*)(.(w+(-w+)*))*(?S*)?$</span><br><span class="line">验证电话号码：^(\(\d&#123;3,4&#125;\)|\d&#123;3,4&#125;-)?\d&#123;7,8&#125;$：--正确格式为：XXXX-XXXXXXX，XXXX- XXXXXXXX，XXX-XXXXXXX，XXX-XXXXXXXX，XXXXXXX，XXXXXXXX。</span><br><span class="line">验证身份证号（15位或18位数字）：^\d&#123;15&#125;|\d&#123;&#125;18$</span><br><span class="line">验证一年的12个月：^(0?[1-9]|1[0-2])$ 正确格式为：“01”-“09”和“1”“12”</span><br><span class="line">验证一个月的31天：^((0?[1-9])|((1|2)[0-9])|30|31)$  正确格式为：01、09和1、31。</span><br><span class="line">整数：^-?\d+$</span><br><span class="line">非负浮点数（正浮点数 + 0）：^\d+(\.\d+)?$</span><br><span class="line">正浮点数  ^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$</span><br><span class="line">非正浮点数（负浮点数 + 0） ^((-\d+(\.\d+)?)|(0+(\.0+)?))$</span><br><span class="line">负浮点数 ^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$</span><br><span class="line">浮点数 ^(-?\d+)(\.\d+)?$</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>页面到达最小宽度后固定</title>
+    <url>/2017/04/07/20170407-csss/</url>
+    <content><![CDATA[<p>让页面到达最小宽度后固定不再改变，代码如下：</p>
+<a id="more"></a>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">5%</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">5%</span>;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">1000px</span>; </span><br><span class="line">    <span class="attribute">width</span>: <span class="built_in">expression</span>(document.body.clientWidth &lt; <span class="number">1000</span>? <span class="string">&quot;1000px&quot;</span>: <span class="string">&quot;auto&quot;</span> ); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
       </tags>
   </entry>
 </search>
